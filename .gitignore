@@ -1,0 +1,11 @@
+# Never commit local email credentials or OAuth tokens.
+email_config.txt
+**/email_config.txt
+**/token.json
+**/credentials.json
+**/__pycache__/
+outputs/shen_monitor_local/data/
+outputs/shen_monitor_local/archive/
+outputs/shen_monitor_local/logs/
+outputs/shen_monitor_local/reports/*.html
+
