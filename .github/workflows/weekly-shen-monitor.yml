@@ -34,6 +34,11 @@ jobs:
             shen-monitor-state-${{ github.ref_name }}-
 
       - name: Collect public information and render HTML
+        env:
+          SHEN_ORCID: ${{ secrets.SHEN_ORCID }}
+          SHEN_SCOPUS_AUTHOR_ID: ${{ secrets.SHEN_SCOPUS_AUTHOR_ID }}
+          SHEN_HKU_PERSON_ID: ${{ secrets.SHEN_HKU_PERSON_ID }}
+          SHEN_EMAIL: ${{ secrets.SHEN_EMAIL }}
         run: python outputs/shen_monitor_local/monitor.py all
 
       - name: Save monitor state
