@@ -1,0 +1,41 @@
+{
+  "subject": {
+    "id": "hku-shen-jiangang-rp00487",
+    "names": ["Jiangang Shen", "Shen Jiangang", "Jian-Gang Shen", "Shen JG", "沈剑刚", "沈劍剛"],
+    "weak_names": ["J. Shen", "Shen J"],
+    "orcid": "",
+    "scopus_author_id": "",
+    "hku_person_id": "",
+    "email": "",
+    "affiliation_terms": [
+      "University of Hong Kong",
+      "The University of Hong Kong",
+      "HKU School of Chinese Medicine",
+      "School of Chinese Medicine, Li Ka Shing Faculty of Medicine"
+    ]
+  },
+  "runtime": {
+    "collection_lookback_days": 14,
+    "digest_days": 7,
+    "request_timeout_seconds": 30,
+    "user_agent": "ShenPublicMonitor/0.1 (public-metadata research monitor; contact configured locally)"
+  },
+  "official_pages": [
+    {
+      "id": "hku_profile_en",
+      "name": "香港大学中医药学院人物页（英文）",
+      "url": "https://scm.hku.hk/Views/People/English-ProfessorJiangangShen.html"
+    },
+    {
+      "id": "hku_scholars_hub",
+      "name": "HKU Scholars Hub",
+      "url": "https://repository.hku.hk/cris/rp/rp00487"
+    },
+    {
+      "id": "hku_world_ranking",
+      "name": "香港大学中医药学院世界排名页",
+      "url": "https://scm.hku.hk/Views/Research/English-Worldclassranking.html"
+    }
+  ]
+}
+
