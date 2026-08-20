@@ -1,0 +1,33 @@
+[
+  {
+    "source": "fixture_pubmed",
+    "external_id": "pmid:42191896",
+    "event_type": "publication",
+    "title": "T cell-targeted immunotherapies for multiple sclerosis: molecular mechanisms to therapeutic perspectives from Traditional Chinese medicine",
+    "published_at": "2026-05-26",
+    "authors": ["Meiling Wu", "Shenyu Yan", "Lu Zhang", "Wen-ting Li", "Qiaohui Du", "Jiangang Shen"],
+    "affiliations": ["School of Chinese Medicine, Li Ka Shing Faculty of Medicine, The University of Hong Kong"],
+    "emails": [],
+    "doi": "10.1038/s41401-026-01814-9",
+    "pmid": "42191896",
+    "journal": "Acta Pharmacologica Sinica",
+    "subject_role": "corresponding author",
+    "abstract": "This review discusses T-cell imbalance in multiple sclerosis, current disease-modifying therapies, T-cell-targeted immunotherapies, oxidative stress, and perspectives from Traditional Chinese medicine.",
+    "url": "https://www.nature.com/articles/s41401-026-01814-9"
+  },
+  {
+    "source": "fixture_web",
+    "external_id": "fixture:computer-science-namesake",
+    "event_type": "publication",
+    "title": "A mobile edge analytics paper by a namesake",
+    "published_at": "2026-06-01",
+    "authors": ["Jiangang Shen", "Hongzi Zhu", "Minyi Guo"],
+    "affiliations": ["Department of Computer Science, Shanghai Jiao Tong University"],
+    "emails": [],
+    "doi": "10.0000/namesake-example",
+    "journal": "Example Computing Proceedings",
+    "abstract": "Mobile edge video analytics and networking.",
+    "url": "https://example.invalid/namesake"
+  }
+]
+
