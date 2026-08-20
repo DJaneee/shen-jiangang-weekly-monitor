@@ -1,0 +1,66 @@
+name: Weekly Shen Jiangang public-information digest
+
+on:
+  schedule:
+    # GitHub Actions uses UTC.  This is Monday 09:05 Asia/Shanghai.
+    - cron: "5 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect-and-email:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore monitor state
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            outputs/shen_monitor_local/data
+            outputs/shen_monitor_local/archive
+            outputs/shen_monitor_local/logs
+          key: shen-monitor-state-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            shen-monitor-state-${{ github.ref_name }}-
+
+      - name: Collect public information and render HTML
+        run: python outputs/shen_monitor_local/monitor.py all
+
+      - name: Save monitor state
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            outputs/shen_monitor_local/data
+            outputs/shen_monitor_local/archive
+            outputs/shen_monitor_local/logs
+          key: shen-monitor-state-${{ github.ref_name }}-${{ github.run_id }}
+
+      - name: Send HTML digest by email
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURITY: ${{ secrets.SMTP_SECURITY }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD_OR_APP_TOKEN: ${{ secrets.SMTP_PASSWORD_OR_APP_TOKEN }}
+          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
+        run: python outputs/shen_monitor_local/send_digest_email.py
+
+      - name: Upload HTML digest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shen-weekly-digest-${{ github.run_number }}
+          path: outputs/shen_monitor_local/reports/*.html
+          if-no-files-found: warn
+
