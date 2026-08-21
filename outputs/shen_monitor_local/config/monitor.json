@@ -18,6 +18,7 @@
     "collection_lookback_days": 14,
     "digest_days": 7,
     "request_timeout_seconds": 30,
+    "http_retries": 3,
     "user_agent": "ShenPublicMonitor/0.1 (public-metadata research monitor; contact configured locally)"
   },
   "official_pages": [
