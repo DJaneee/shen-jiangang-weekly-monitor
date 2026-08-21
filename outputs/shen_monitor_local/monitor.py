@@ -19,6 +19,7 @@ import re
 import sqlite3
 import ssl
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -204,12 +205,22 @@ def http_get(url: str, config: dict[str, Any]) -> bytes:
         context = ssl.create_default_context(cafile=certifi.where())
     except ImportError:
         pass
-    with urllib.request.urlopen(
-        request,
-        timeout=config["runtime"]["request_timeout_seconds"],
-        context=context,
-    ) as response:
-        return response.read()
+    retries = max(1, int(config["runtime"].get("http_retries", 3)))
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(
+                request,
+                timeout=config["runtime"]["request_timeout_seconds"],
+                context=context,
+            ) as response:
+                return response.read()
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            if attempt + 1 >= retries:
+                raise
+            delay = 2 ** attempt
+            logging.warning("Temporary HTTP failure (%d/%d) for %s: %s; retrying in %ds", attempt + 1, retries, url, exc, delay)
+            time.sleep(delay)
+    raise RuntimeError(f"HTTP request failed after {retries} attempts: {url}")
 
 
 def save_raw_bytes(source: str, suffix: str, content: bytes) -> Path:
